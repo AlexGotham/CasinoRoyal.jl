@@ -3,7 +3,13 @@ uuid = "e4d36573-9347-4f51-88fc-d2caa1c87235"
 authors = ["AlexGotham <aleger567@gmail.com> and contributors"]
 version = "1.0.0-DEV"
 
+[deps]
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+Vizagrams = "8c229dad-8b3a-4031-83d6-73545c88426d"
+
 [compat]
+Random = "1.11.0"
+Vizagrams = "0.2.10"
 julia = "1.10"
 
 [extras]
