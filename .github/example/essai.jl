@@ -1,2 +1,2 @@
-
-CasinoRoyal.rouedessin(5)
+using CasinoRoyal.CasinoRoyal
+rouedessin(5)
