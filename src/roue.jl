@@ -49,8 +49,7 @@ function rouenombre(n)
     end
 end
 
-function rouedessin()
-    n=rand(0:36)
+function rouedessin(n)
     return(roue(2*pi*n/37))
 end
 
