@@ -1,4 +1,4 @@
-
+using Plots 
 rouge=[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]
 L=shuffle(rouge)
 noir=[2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35]
@@ -50,7 +50,9 @@ function rouenombre(n)
 end
 
 function rouedessin(n)
-    return(roue(2*pi*n/37))
+    angle = 2 * π * n / 37
+    roue(angle)
+   
 end
 
 function rouefinal()
@@ -59,3 +61,33 @@ function rouefinal()
     return(roue(2*pi*n/37))
 end
 
+function capture_svg(n)
+    io_buffer = IOBuffer()
+    plotly()
+
+    rouedessin(n)
+
+    savefig(io_buffer,"./src")
+    svg_string = String(take!(io_buffer))
+    
+    # Create the HTML content
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Roulette</title>
+    </head>
+    <body>
+        <div>
+            $svg_string
+        </div>
+    </body>
+    </html>
+    """
+    # Write the HTML content to a file
+    open("roue.html", "w") do file
+        write(file, html_content)
+    end
+end
