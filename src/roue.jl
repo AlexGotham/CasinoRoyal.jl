@@ -23,7 +23,7 @@ function roue(θ)
         b=b+R(2π*k/37)Line([[0,0],[1,0]])
     end 
     b=b+S(:fill=>:blue)*R(θ+(1/21))*T(0,0.75)*U(0.05)Circle()
-    draw(b)
+    string(draw(b))
 end
 function rouecouleur(n)
     if n==0
@@ -51,43 +51,12 @@ end
 
 function rouedessin(n)
     angle = 2 * π * n / 37
-    roue(angle)
-   
+    plotFig=roue(angle)
+    return plotFig
 end
 
 function rouefinal()
     n=rand(0:36)
     rouecouleur(n), rouenombre(n)
     return(roue(2*pi*n/37))
-end
-
-function capture_svg(n)
-    io_buffer = IOBuffer()
-    plotly()
-
-    rouedessin(n)
-
-    savefig(io_buffer,"./src")
-    svg_string = String(take!(io_buffer))
-    
-    # Create the HTML content
-    html_content = """
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Roulette</title>
-    </head>
-    <body>
-        <div>
-            $svg_string
-        </div>
-    </body>
-    </html>
-    """
-    # Write the HTML content to a file
-    open("roue.html", "w") do file
-        write(file, html_content)
-    end
 end
